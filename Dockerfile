@@ -25,7 +25,7 @@ RUN cd /home/ && mkdir odj_detect_app && cd odj_detect_app
 ADD templates /home/odj_detect_app/templates
 ADD object_detection_api.py /home/odj_detect_app/object_detection_api.py
 ADD core_process.py /home/odj_detect_app/core_process.py
-ADD tf_obj_detect_stream_server.py /home/odj_detect_app/tf_obj_detect_stream_server.py
+ADD obj_detect_stream_server.py /home/odj_detect_app/obj_detect_stream_server.py
 
 ENV PYTHONPATH=$PYTHONPATH:/home/odj_detect_app:/tensorflow/models/research/object_detection/:/tensorflow/models/research/object_detection/protos:/tensorflow/models/research/
 WORKDIR /home/odj_detect_app
