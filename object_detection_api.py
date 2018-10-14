@@ -16,6 +16,8 @@ from matplotlib import pyplot as plt
 from PIL import Image
 import cv2
 
+import argparse
+
 # ## Object detection imports
 # Here are the imports from the object detection module.
 from utils import label_map_util
@@ -112,9 +114,6 @@ def segmentation(src_img,model,sess,category_index):
 
   return image_np
 
-import argparse
-
-
 def main(args):
 
     # Donwload Model by its name
@@ -188,6 +187,13 @@ if __name__ == '__main__':
     # MODEL_NAME = "mask_rcnn_resnet50_atrous_coco_2018_01_28"
 
     parser.add_argument('--model', default=MODEL_NAME, type=str)
+
+    # TODO: 
+    parser.add_argument('--src_type', default="AVI", type=str)
+    parser.add_argument('--output_path', default="", type=str)
+    parser.add_argument('--output_port', default=5000, type=int)
+
+
 
     args = vars(parser.parse_args())    
     main(args)
