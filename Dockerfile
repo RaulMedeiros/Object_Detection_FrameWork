@@ -11,6 +11,7 @@ RUN pip install matplotlib
 RUN apt-get -y install wget
 RUN pip install imutils
 RUN pip install flask
+RUN pip install scipy
 
 #Set TensorFlow Base Repository
 RUN git clone https://github.com/tensorflow/models.git /tensorflow/models

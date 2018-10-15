@@ -75,7 +75,7 @@ def rotate(src_img,rot_angle):
     # Perform Rotation
     return cv2.warpAffine(src_img,M,(cols,rows))
 
-def process_frame(src_img,model,sess,category_index): 
+def process_frame(src_img,model,sess,category_index,display=True): 
     # Rotate if needed
     rot_angle = 0
     rot_img = rotate(src_img,rot_angle)
@@ -102,14 +102,24 @@ def process_frame(src_img,model,sess,category_index):
         [boxes, scores, classes, num_detections],
         feed_dict={image_tensor: image_np_expanded})
 
-    # Visualization of the results of a detection.
-    vis_util.visualize_boxes_and_labels_on_image_array(
-        image_np,
-        np.squeeze(boxes),
-        np.squeeze(classes).astype(np.int32),
-        np.squeeze(scores),
-        category_index,
-        use_normalized_coordinates=True,
-        line_thickness=8)
+    if (display):
+        # Visualization of the results of a detection.
+        vis_util.visualize_boxes_and_labels_on_image_array(
+            image_np,
+            np.squeeze(boxes),
+            np.squeeze(classes).astype(np.int32),
+            np.squeeze(scores),
+            category_index,
+            use_normalized_coordinates=True,
+            line_thickness=8)
+        return image_np
+    else:
 
-    return image_np
+        n_detect = int(num_detections[0])
+        boxes = boxes.tolist()[0][:n_detect]
+        scores = scores.tolist()[0][:n_detect]
+        class_detect = classes.tolist()[0][:n_detect]
+        classes = [category_index[int(x)] for x in class_detect]
+        return {"boxes" : boxes, 
+                "scores" : scores,      
+                "classes" : classes}
