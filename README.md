@@ -36,8 +36,6 @@ $ sudo docker run hello-world
 ## Build and Run Object_Detection_FrameWork Container Image
 ``` shell
 $ sudo docker build -t tensorflow_obj_detect .
-<<<<<<< HEAD
-<<<<<<< HEAD
 $ sudo docker run --net host -i -t tensorflow_obj_detect
 ```
 ## Run Object_Detection_FrameWork Application
@@ -49,7 +47,6 @@ $ sudo docker run -it --net host --device /dev/video0 tensorflow_obj_detect
 ## Run Object_Detection_FrameWork Application
 ``` shell
 $ python obj_detect_stream_server.py
->>>>>>> 619530a83ad56fc36ce54e00232c4986d3e0bf09
 ```
 =======
 $ sudo docker run -it --net host --device /dev/video0 tensorflow_obj_detect
@@ -58,14 +55,12 @@ $ sudo docker run -it --net host --device /dev/video0 tensorflow_obj_detect
 ``` shell
 $ python obj_detect_stream_server.py
 ```
->>>>>>> 164455ad7440887ab64745124fec51853a5d362b
  
 ### Server Arguments
 | Command | Default |
 | --- | --- |
 | --host| localhost |
 | --port| 8080 |
-<<<<<<< HEAD
 
 ### CV_APP Arguments
 | Command | Default |
@@ -102,43 +97,5 @@ $ python obj_detect_stream_server.py
 | 23 |mask_rcnn_resnet101_atrous_coco_2018_01_28
 | 24 |mask_rcnn_resnet50_atrous_coco_2018_01_28
 
-=======
-
-### CV_APP Arguments
-| Command | Default |
-| --- | --- |
-| --source | 0 |
-| --decoder	 | /tensorflow/models/research/object_detection/data/mscoco_label_map.pbtxt |
-| --model | ssd_mobilenet_v2_coco_2018_03_29 |
-
-#### Available Models 
-|  id |  --model |
-| --- | --- |
-| 1 | ssd_mobilenet_v1_coco_2018_01_28
-| 2 | ssd_mobilenet_v1_0.75_depth_300x300_coco14_sync_2018_07_03
-| 3 | ssd_mobilenet_v1_quantized_300x300_coco14_sync_2018_07_18
-| 4 | ssd_mobilenet_v1_0.75_depth_quantized_300x300_coco14_sync_2018_07_18
-| 5 | ssd_mobilenet_v1_ppn_shared_box_predictor_300x300_coco14_sync_2018_07_03
-| 6 | ssd_mobilenet_v1_fpn_shared_box_predictor_640x640_coco14_sync_2018_07_03
-| 7 | ssd_resnet50_v1_fpn_shared_box_predictor_640x640_coco14_sync_2018_07_03
-| 8 | ssd_mobilenet_v2_coco_2018_03_29
-| 9 | ssdlite_mobilenet_v2_coco_2018_05_09
-| 10 | ssd_inception_v2_coco_2018_01_28
-| 11 | faster_rcnn_inception_v2_coco_2018_01_28
-| 12 | faster_rcnn_resnet50_coco_2018_01_28
-| 13 | faster_rcnn_resnet50_lowproposals_coco_2018_01_28
-| 14 |rfcn_resnet101_coco_2018_01_28
-| 15 |faster_rcnn_resnet101_coco_2018_01_28
-| 16 |faster_rcnn_resnet101_lowproposals_coco_2018_01_28
-| 17 |faster_rcnn_inception_resnet_v2_atrous_coco_2018_01_28
-| 18 |faster_rcnn_inception_resnet_v2_atrous_lowproposals_coco_2018_01_28
-| 19 |faster_rcnn_nas_coco_2018_01_28
-| 20 |faster_rcnn_nas_lowproposals_coco_2018_01_28
-| 21 |mask_rcnn_inception_resnet_v2_atrous_coco_2018_01_28
-| 22 |mask_rcnn_inception_v2_coco_2018_01_28
-| 23 |mask_rcnn_resnet101_atrous_coco_2018_01_28
-| 24 |mask_rcnn_resnet50_atrous_coco_2018_01_28
-
->>>>>>> 164455ad7440887ab64745124fec51853a5d362b
 ##
 http://localhost:8080/ (It may take a while...)
