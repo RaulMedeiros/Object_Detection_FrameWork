@@ -52,18 +52,47 @@ def index():
 @app.route('/video_url', methods=['GET', 'POST'])
 def process_on_video():
     if request.method=='POST':
-        # print(request.form['video_url'])
         filename = get_youtube_video()
+        def get_frame():
+            with model.as_default():
+                with tf.Session(graph=model) as sess:
+                    cap = cv2.VideoCapture('./static/{}'.format(filename)) 
+                    while cap.isOpened():
+                        # grab the frame from the threaded video stream and process it
+                        ret, src_frame = cap.read()
+                        # Process image
+                        out_frame = cp.process_frame(src_frame,model,sess,category_index, display=True)
+                        imgencode=cv2.imencode('.jpg',out_frame)[1]
+                        stringData=imgencode.tostring()
+                        yield (b'--frame\r\n'
+                            b'Content-Type: text/plain\r\n\r\n'+stringData+b'\r\n')    
+
+        return Response(get_frame(), mimetype='multipart/x-mixed-replace; boundary=frame')
                
-    return render_template('youtube.html', video_name = filename)
+    # return render_template('youtube.html', video_name = filename)
 
 
 def get_youtube_video():
-    video_example = 'https://www.youtube.com/watch?v=PhFcl72nhiM'
-    # os.system('youtube-dl -o /tmp/ ' + request.form['video_url'])
+    '''
+    video_examples
+    https://www.youtube.com/watch?v=PhFcl72nhiM (person talking)
+    https://www.youtube.com/watch?v=jjlBnrzSGjc (traffic camera)
+    https://www.youtube.com/watch?v=MiN_kgpkn-U (people walking)
+    https://www.youtube.com/watch?v=GKuG4fftJdk (dogs playing 01)
+    https://www.youtube.com/watch?v=GKuG4fftJdk (dogs playing 02)
+    
+    '''
+    filename = 'video_to_process.mp4'
+
+    if os.path.isfile(('/home/odj_detect_app/static/{}'.format(filename))):
+        print('here UHAuhAUhUAHUHA')
+        os.system('rm /home/odj_detect_app/static/{}'.format(filename))
+    
     os.system('youtube-dl -f 18 -o ' + '"/home/odj_detect_app/static/video_to_process.%(ext)s" ' + request.form['video_url'])
 
-    return 'video_to_process.mp4'
+    return filename
+
+
 
 ###########
 
@@ -172,4 +201,4 @@ if __name__ == '__main__':
     src,model,category_index = init()
 
     # Accessible at 
-    app.run(host=args['host'], port=args['port'], debug=True, threaded=True)
+    app.run(host=args['host'], port=args['port'], debug=False, threaded=True)

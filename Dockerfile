@@ -52,7 +52,7 @@ WORKDIR /home/odj_detect_app
 RUN mkdir static
 
 # Run commands in container startup
-# CMD ["python", "obj_detect_stream_server.py"]
+CMD ["python", "obj_detect_stream_server.py"]
 
 
 
