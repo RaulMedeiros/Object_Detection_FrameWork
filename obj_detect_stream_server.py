@@ -2,7 +2,7 @@
 
 # import the necessary packages
 from __future__ import print_function
-from flask import Flask, render_template, Response, request, jsonify
+from flask import Flask, render_template, Response, request, jsonify, url_for
 
 import sys
 import argparse
@@ -12,15 +12,21 @@ import tensorflow as tf
 from scipy import misc
 import traceback
 
+import os
 
 import imutils
 from imutils.video import WebcamVideoStream
 
 import core_process as cp
 
+
+
 ###########
+# Create and flask app
 
 app = Flask(__name__)
+
+# Render main html pages
 
 @app.route('/stream')
 def stream():
@@ -30,10 +36,36 @@ def stream():
 def image():
     return render_template('image.html')
 
+@app.route('/youtube')
+def youtube():
+    return render_template('youtube.html')
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+##
+
+# This subroutine activates youtube-dl with the input link, in the form inside youtube.html
+# and, save the file into the /tmp folder, naming it  as "video_to_process.mp4"
+
+@app.route('/video_url', methods=['GET', 'POST'])
+def process_on_video():
+    if request.method=='POST':
+        # print(request.form['video_url'])
+        filename = get_youtube_video()
+               
+    return render_template('youtube.html', video_name = filename)
+
+
+def get_youtube_video():
+    video_example = 'https://www.youtube.com/watch?v=PhFcl72nhiM'
+    # os.system('youtube-dl -o /tmp/ ' + request.form['video_url'])
+    os.system('youtube-dl -f 18 -o ' + '"/home/odj_detect_app/static/video_to_process.%(ext)s" ' + request.form['video_url'])
+
+    return 'video_to_process.mp4'
+
+###########
 
 @app.route('/calc')
 def calc():

@@ -1,0 +1,6 @@
+tensorflow
+jupyter
+matplotlib
+imutils
+flask
+scipy

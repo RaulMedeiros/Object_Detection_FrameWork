@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>HOME!</title>
+  </head>
+  <body>    
+    <h1> On video </h1>
+
+    <form action="/video_url" method="post" enctype="multipart/form-data">
+      <input type="text" name="video_url" value="youtube link">
+      <input type="submit" value="Predict">
+    </form>
+
+      <video loop autoplay width="320" height="240" controls>
+        <source src="{{ url_for('static', filename=video_name) }}" type="video/mp4">
+      </video>
+
+
+  </body>
+</html>
+
