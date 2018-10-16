@@ -52,6 +52,8 @@ def index():
 @app.route('/video_url', methods=['GET', 'POST'])
 def process_on_video():
     if request.method=='POST':
+        print('aaaaaaaaaaaaaaaaauehauehuhaeuhaeuea')
+
         filename = get_youtube_video()
         def get_frame():
             with model.as_default():
@@ -120,7 +122,6 @@ def calc():
 @app.route('/predict', methods=['POST'])
 def predict_frame():
 	if request.method=='POST':
-
 		# get uploaded image file if it exists
 		file = request.files['image']
 		

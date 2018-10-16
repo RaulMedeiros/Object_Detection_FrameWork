@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    command: python /home/odj_detect_app/obj_detect_stream_server.py
+    network_mode: "host"
+    devices:
+      - "/dev/video0" 
+    volumes: 
+      - .:/odj_detect_app
+    ports:
+      - "8080:8080"

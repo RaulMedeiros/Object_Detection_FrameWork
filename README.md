@@ -51,6 +51,19 @@ $ python obj_detect_stream_server.py
 =======
 $ sudo docker run -it --net host --device /dev/video0 tensorflow_obj_detect
 ```
+
+Or if you decide to use `docker-compose.yml`, you can build and run in a single command as following:
+``` shell
+$ sudo docker-compose up
+```
+
+## Run Object_Detection_FrameWork Application
+``` shell
+$ python obj_detect_stream_server.py
+```
+=======
+$ sudo docker run -it --net host --device /dev/video0 tensorflow_obj_detect
+```
 ## Run Object_Detection_FrameWork Application
 ``` shell
 $ python obj_detect_stream_server.py

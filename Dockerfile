@@ -28,6 +28,7 @@ RUN cd /home/ && mkdir odj_detect_app && cd odj_detect_app
 # Install youtube-dl
 
 RUN apt-get install -y youtube-dl
+RUN pip install --upgrade youtube-dl
 
 # ADD python scripts
 
@@ -38,9 +39,9 @@ ADD detect_object.py /home/odj_detect_app/detect_object.py
 
 ADD models_Zoo /home/odj_detect_app/models_Zoo
 
-# ADD image test folder
+#s ADD image test folder
 
-ADD image_test /home/image_test
+#ADD image_test /home/image_test
 
 ADD templates /home/odj_detect_app/templates
 ADD object_detection_api.py /home/odj_detect_app/object_detection_api.py
